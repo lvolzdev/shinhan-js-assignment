@@ -11,8 +11,8 @@ const dbConnect = async () => {
             }
         );
     } catch(err) {
-        throw new Error('DB Connection Failed');
+        console.error('DB Connection Failed:', err);
     }
 }
 
-export { dbConnect };
+module.exports = { dbConnect };
