@@ -1,13 +1,22 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
+
+const dbConf = {
+    username: process.env.USER_NAME,
+    password: process.env.PASSWORD,
+    cluster: process.env.CLUSTER,
+    getMongoURL: function () {
+        return `mongodb+srv://${this.username}:${this.password}@${this.cluster}/`;
+    },
+};
 
 const dbConnect = async () => {
     try {
         await mongoose.connect(
-            process.env.MONGOOSE_URL,
-            {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
+            dbConf.getMongoURL(), {
+                retryWrites: true,
+                w: 'majority',
             }
         );
     } catch(err) {
