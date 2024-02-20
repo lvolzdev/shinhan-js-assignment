@@ -32,7 +32,7 @@ async function wadizFetch() {
                 photoUrl: el.photoUrl,
                 nickName: el.nickName,
                 coreMessage: el.coreMessage,
-                whenOpen: el.whenOpen,
+                whenOpen: new Date(el.whenOpen),
                 achievementRate: el.achievementRate
             }
         });
