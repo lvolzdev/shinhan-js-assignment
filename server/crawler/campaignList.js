@@ -38,10 +38,12 @@ async function wadizFetch() {
         });
         console.log(result)
         const jsonString = JSON.stringify(result);
-        fs.writeFileSync("./res/campaignListOutput.json", jsonString);
-        console.log('Success!');
+        fs.writeFileSync("./res/campaignList.json", jsonString);
+        console.log('Successful saving of campaign json data!');
     } catch (err) {
         console.log(err);
+        console.log('Failed to save campaign json data');
+        return null;
     }
 };
 
