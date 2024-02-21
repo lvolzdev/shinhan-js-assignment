@@ -27,7 +27,7 @@ async function saveDataToDB() {
     await connectDB();
 
     const jsonData = fs.readFileSync(
-      "../crawler/res/campaignList.json",
+      "./crawler/res/campaignList.json",
       "utf-8"
     );
     const campaigns = JSON.parse(jsonData);

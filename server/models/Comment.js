@@ -6,15 +6,17 @@ const Campaign = require("./Campaign");
 const commentSchema = new mongoose.Schema({
   body: { type: String, required: true },
   campaignId: {
-    type: mongoose.Schema.Types.ObjectId,
+    // type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "Campaign",
     required: true,
   },
-  commentType: { type: String },
-  userNickname: { type: String, required: true },
+  commentType: { type: String }, // 없는 경우 있음
+  userNickName: { type: String }, // 없는 경우 있음
   whenCreated: { type: Date, default: Date.now },
   commentId: {
-    type: mongoose.Schema.Types.ObjectId,
+    // type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "Comment",
     required: true,
     default: null, // 댓글인 경우 null, 대댓글인 경우 참조 댓글의 _id
@@ -29,7 +31,7 @@ async function saveDataToDB() {
   try {
     await connectDB();
 
-    const jsonData = fs.readFileSync("../crawler/res/comment.json", "utf-8");
+    const jsonData = fs.readFileSync("./crawler/res/comment.json", "utf-8");
     const comments = JSON.parse(jsonData);
 
     await Comment.insertMany(comments);
