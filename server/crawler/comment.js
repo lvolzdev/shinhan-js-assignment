@@ -12,7 +12,10 @@ const payload = {
 
 async function getCampaignIds() {
   try {
-    const jsonData = fs.readFileSync("./res/campaignList.json", "utf-8");
+    const jsonData = fs.readFileSync(
+      "./crawler/res/campaignList.json",
+      "utf-8"
+    );
     const campaignId = JSON.parse(jsonData);
 
     const campaignIds = campaignId.map((camp) => camp.campaignId);
@@ -56,7 +59,7 @@ async function wadizCommentFetch() {
             const replyData = {
               body: reply.body,
               campaignId: reply.commonId,
-              commentType: reply.commentType, // TODO
+              commentType: comment.commentType, // 부모꺼
               userNickName: reply.nickName,
               whenCreated: reply.whenCreated,
               commentId: reply.parentBoardId, // 상위 댓글의 id
@@ -71,7 +74,7 @@ async function wadizCommentFetch() {
     }
 
     const jsonString = JSON.stringify(allResults);
-    fs.writeFileSync("./res/comment.json", jsonString);
+    fs.writeFileSync("./crawler/res/comment.json", jsonString);
     console.log("Successful saving of comment json data!");
   } catch (err) {
     console.log("Failed to save comment json data");
