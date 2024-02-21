@@ -12,13 +12,12 @@ const commentSchema = new mongoose.Schema({
     required: true,
   },
   commentType: { type: String }, // 없는 경우 있음
-  userNickName: { type: String }, // 없는 경우 있음
+  userNickName: { type: String }, // 없는 경우 있음 // TODO
   whenCreated: { type: Date, default: Date.now },
   commentId: {
     // type: mongoose.Schema.Types.ObjectId,
     type: String,
     ref: "Comment",
-    required: true,
     default: null, // 댓글인 경우 null, 대댓글인 경우 참조 댓글의 _id
   },
   depth: { type: Number, required: true, default: 0 },
