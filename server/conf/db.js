@@ -13,10 +13,6 @@ const confDB = {
 
 const connectDB = async () => {
   try {
-    console.log("여기야");
-    console.log(process.env.USER_NAME);
-    // console.log(process.env);
-    // console.log(confDB.getMongoURL());
     await mongoose.connect(confDB.getMongoURL(), {
       retryWrites: true,
       w: "majority",

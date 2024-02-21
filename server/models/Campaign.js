@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { connectDB, disconnectDB } = require("../db");
+const { connectDB, disconnectDB } = require("../conf/db");
 const fs = require("fs");
-const Comment = require("./Comment");
 
 const campaignSchema = new mongoose.Schema(
   {
