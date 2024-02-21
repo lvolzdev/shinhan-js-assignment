@@ -6,6 +6,7 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+const campaignRouter = require("./routes/campaign");
 
 const { connectDB } = require("./conf/db");
 
@@ -13,8 +14,12 @@ var app = express();
 
 connectDB();
 
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
 app.get("/", (req, res) => {
-  res.send("express test");
+  res.send("init express");
+  // res.render("index");
 });
 
 app.use(logger("dev"));
@@ -23,8 +28,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use("/api", indexRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/campaign", campaignRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
