@@ -20,6 +20,24 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// populate 사용 - objectId로 했을 때.
+// router.get("/:campaignId", async (req, res, next) => {
+//   try {
+//     const campaignId = req.params.campaignId;
+//     console.log("여기여기");
+//     console.log(campaignId);
+
+//     const campaigns = await Campaign.findOne({ campaignId: campaignId });
+//     const comments = await Comment.find({
+//       campaignId: campaignId,
+//     }).populate("comments");
+//     res.json(campaigns, comments);
+//   } catch (err) {
+//     console.log(err);
+//     next(err);
+//   }
+// });
+
 router.get("/:campaignId", async (req, res, next) => {
   try {
     const campaignId = req.params.campaignId;
@@ -49,13 +67,12 @@ router.get("/:campaignId", async (req, res, next) => {
 router.post("/:campaignId/comment", async (req, res, next) => {
   try {
     const campaignId = req.params.campaignId;
-    const { body, commentType, userNickname, commentId, depth } = req.body;
 
     const comment = await Comment.create({
       // Comment 모델 활용해서 댓글 생성
+      ...req.body,
       campaignId,
       depth: 0,
-      ...req.body,
     });
     res.json(comment);
   } catch (err) {
@@ -71,13 +88,12 @@ router.post("/:campaignId/comment/:commentId", async (req, res, next) => {
   try {
     const campaignId = req.params.campaignId;
     const commentId = req.params.commentId;
-    const { body, commentType, userNickname, depth } = req.body;
 
     const commentReply = await Comment.create({
+      ...req.body,
       campaignId,
       commentId,
       depth: 1,
-      ...req.body,
     });
     res.json(commentReply);
   } catch (err) {
