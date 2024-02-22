@@ -1,7 +1,9 @@
 import * as React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import MainPage from "../routes/page";
 import Layout from "~/routes/layout";
+import MainPage from "~/routes/page";
+import CampaignPage from "~/routes/campaign/page";
+import CampaignDetailPage from "~/routes/campaign/detail/page";
 
 export const mainRoutes = [
   {
@@ -9,9 +11,24 @@ export const mainRoutes = [
     element: <Layout />,
     children: [
       {
-        path: "/campaign",
+        path: "/",
         element: <MainPage />,
         index: true,
+      },
+      {
+        path: "/campaign",
+        children: [
+          {
+            path: "",
+            element: <CampaignPage />,
+            index: true,
+          },
+          {
+            path: ":campaignId",
+            element: <CampaignDetailPage />,
+            index: true,
+          },
+        ],
       },
     ],
   },
