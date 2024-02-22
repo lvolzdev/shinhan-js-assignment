@@ -39,6 +39,7 @@ async function wadizCommentFetch() {
       const comments = resp.data.data.content;
 
       let results = [];
+      // 댓글
       for (const comment of comments) {
         const data = {
           body: comment.body,
@@ -47,8 +48,8 @@ async function wadizCommentFetch() {
           userNickName: comment.nickName,
           whenCreated: comment.whenCreated,
           commentId: comment.boardId,
+          parentCommentId: null,
           hasReply: comment.hasReply,
-          //   commentReplys: comment.commentReplys,
           depth: comment.depth, // 0
         };
         results.push(data);
@@ -62,7 +63,8 @@ async function wadizCommentFetch() {
               commentType: comment.commentType, // 부모꺼
               userNickName: reply.nickName,
               whenCreated: reply.whenCreated,
-              commentId: reply.parentBoardId, // 상위 댓글의 id
+              commentId: reply.boardId,
+              parentCommentId: reply.parentBoardId,
               depth: reply.depth, // 1
             };
             results.push(replyData);
