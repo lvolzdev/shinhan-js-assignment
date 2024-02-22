@@ -16,11 +16,11 @@ Wadiz 홈페이지에서 캠페인과 댓글 데이터를 수집하고 Mongodb�
 
 # Getting Started
 
-## Prerequisites
+## 1. Prerequisites
 
 NPM / Yarn and Node.js installed
 
-## Installing
+## 2. Installing
 
 Installing NPM modules on both client and server folders.
 
@@ -38,7 +38,7 @@ cd server && npm install
 cd crawler && npm install
 ```
 
-## Setting .env
+## 3. Setting .env
 
 You have to make `.env` file in the `server` folder. Please put your own MongoDB information in the form below and write it in the `.env` file.
 
@@ -50,7 +50,7 @@ CLUSTER = your_cluster
 DATEBASE = wadiz
 ```
 
-## Crawling Wadiz Data
+## 4. Crawling Wadiz Data
 
 Please execute the following command on the project `/root` path.
 
@@ -62,7 +62,7 @@ node crawler/comment.js
 
 Then json files(campaignList.json and comment.json)will be stored in /server/crawler/res forder.
 
-## Storing The Crawled Data In The MongoDB
+## 5. Storing The Crawled Data In The MongoDB
 
 Please execute the following command on the current path.
 
@@ -75,7 +75,7 @@ node models/Comment.js
 
 The campaign and comment data in each schema form are then stored in the MongoDB that you set up in the `.env` file.
 
-## Running the app
+## 6. Running the app
 
 Open a terminal on server directory
 
@@ -90,3 +90,8 @@ npm run dev
 ```
 
 Access the web app at http://localhost:5173/api/campaign ☺️
+<br /><br />
+
+# Result
+
+<img width="1582" alt="스크린샷 2024-02-22 오후 3 07 24" src="https://github.com/lvolzdev/shinhan-js-assignment/assets/63188042/efdd0bc7-2f40-42aa-80d8-7b0f9939b2fd">
