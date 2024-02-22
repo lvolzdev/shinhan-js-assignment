@@ -38,7 +38,7 @@ cd server && npm install
 ```
 
 ```
-cd crawler && npm install
+cd server/crawler && npm install
 ```
 
 ## 3. Setting .env
